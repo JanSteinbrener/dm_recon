@@ -1,0 +1,30 @@
+#!/bin/bash
+
+##############################################
+# DO NOT MODIFY THIS file!! Instead create a #
+# personal copy and modify it locally.       #
+##############################################
+
+# add absolute paths to h5 files, one per line
+FILES="
+"
+
+# script file for reconstruction
+SCRIPTFILE=script
+
+for file in $FILES
+do
+    # replace PATTERN with beginning of 
+    # first line in SCRIPTFILE. Note that 
+    # PATTERN should be the same for all 
+    # files in FILES, e.g. the directory
+    # containing all files.
+    REPLACE=$(grep PATTERN $SCRIPTFILE)
+    ex $SCRIPTFILE <<EOF
+:%s?$REPLACE?$file?g
+:wq
+EOF
+./dm_recon $SCRIPTFILE
+done
+
+

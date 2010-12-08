@@ -1,0 +1,18 @@
+/data/jan/LCLS_jun10/converted/T4/r0076_200325_111669_SBconv.h5
+HIO = 0
+beta = -1.15
+iterations = 2000
+use saved iterate = 0
+use error array = 0
+positivity: no
+	    imaginary_only = 1
+averaging: no
+	   average after = 0
+	   average every = 1
+           save iterates = 1	   
+shrinkwrap: yes
+	    shrink start = 1500
+	    shrink every = 20
+	    shrink last = 1540
+	    sigma = 3.0
+	    threshold = 0.6

@@ -1,0 +1,71 @@
+Changelog of the dm_recon reconstruction algorithm		 
+--------------------------------------------------------------------------------
+Apr 19th, 2010 (JFS)
+	- fixed problem with setting of the global phase in dm_recon_average.
+
+Mar 29th, 2010 (JFS)
+	- changed tagnames for shrinkwrap in scriptfile to shrink start,
+	shrink end to make it more obvious that the end points are
+	included. Also fixed wrong use of modulus constraint to calculate
+	the next iteration at which averaging should occur.
+	
+Jan 12th, 2010 (JFS)
+	- fixed wrong implementation of positivity constraint for HIO. 
+
+Aug 7th (JFS)
+	- added possibility to start with previously saved iterate as
+	starting guess
+	
+Jun 23rd (JFS)
+	- added possibility to save iterates before averaging in 2D. 
+
+Jun 19th (JFS)
+	- added check if comments exist. Will create comments if they don't
+	exist and print warning that no comments were found.
+	
+May 1st (JFS)
+	- tested averaging, shrinkwrapping and positivity
+	- updated comments to show if HIO or DM was used.
+	
+Apr 30th (JFS)
+	- added HIO. Can be selected by setting HIO=1 in script 
+	- moved error calc, averaging and shrinkwrapping into 
+	the reconstruction routines
+
+Apr 29th (JFS)
+	- fixed problem with wrong starting guess. Now the total power 
+	in starting guess is the same as in the measured magnitudes.
+	- removed some HDF5 debug output from shrinkwrap routine
+
+Apr 14th (JFS)
+	- fixed bug with creating support array. It was not working
+	properly with MPI.
+	
+	
+Mar 14th (JFS)
+	- shrinkwrap now directly loads fft-centered gaussian.
+	
+Jan 28th (JFS)
+	- fixed problem with reading in values for averaging and shrinkwrap.
+	If it says yes but avg/shrink_after is greater than number of iterations
+	then avg/shrink_every will be set to 0.
+	
+Jan 27th (JFS)
+	- dm_recon_crop_2d_adi now uses dm_array_crop_2d_real
+
+Jan 23rd (JFS)
+	- added new function dm_recon_average that will set the global phase
+	according to Chapman, JOSAA 2006 before averaging.
+	
+Jan 22nd (JFS)
+	- renamed next_itn_cas to final_itn_cas and opt_next_itn_cas to 
+	opt_itn_cas. Saved to the file is wither final_itn_cas or 
+	avg_final_itn_cas if there is averaging. For diffmap final_itn_cas 
+	is the Fourier estimate.
+	
+Jan 20th (JFS)
+	- added this changelog and the script file for running several 
+	reconstructions in a row to CVS
+	- error calculation now performed by external routine. It can be used
+	for all reconstruction algorithms. It is the ratio of total power 
+	outside of support to total power within support.

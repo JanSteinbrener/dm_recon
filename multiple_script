@@ -1,0 +1,21 @@
+#!/bin/bash
+
+FILES="/data/jan/LCLS_21jun10/r0077/temp/r0077_201100_13479_conv.h5
+/data/jan/LCLS_21jun10/r0077/temp/r0077_201146_30021_conv.h5
+/data/jan/LCLS_21jun10/r0077/temp/r0077_201151_31803_conv.h5
+/data/jan/LCLS_21jun10/r0077/temp/r0077_201210_38793_conv.h5
+/data/jan/LCLS_21jun10/r0077/temp/r0077_201227_44709_conv.h5
+/data/jan/LCLS_21jun10/r0077/temp/r0077_201231_46197_conv.h5
+"
+
+SCRIPTFILE=script
+
+for file in $FILES
+do
+    REPLACE=$(grep /data/jan/ $SCRIPTFILE)
+    ex $SCRIPTFILE <<EOF
+:%s?$REPLACE?$file?g
+:wq
+EOF
+screen -d -m ./dm_recon $SCRIPTFILE &> ${file/.h5/.log}
+done
